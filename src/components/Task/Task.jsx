@@ -58,8 +58,8 @@ const Task = ({ text, index, column, taskId }) => {
           ) : (
             <>
               <p>
-                {text}
                 <span className={column}></span>
+                {text}
               </p>
               <section className="btn-group">
                 <HiOutlinePencilSquare
