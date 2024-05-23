@@ -1,7 +1,7 @@
 @import "./utils.style.scss";
 
 .App {
-  background-color: $bg-light;
+  background-color: var(--bg);
   min-height: 100vh;
   position: relative;
   text-align: center;
@@ -12,17 +12,36 @@
     padding-top: 20px;
   }
 
-  .container {
-    width: 100%;
-    overflow: auto;
+  * {
+    p {
+      color: var(--fontColor);
+    }
+  }
 
-    .box {
-      display: grid;
-      gap: 30px;
-      grid-template-columns: repeat(3, 1fr);
-      margin: auto 30px;
-      min-width: 1400px;
-      overflow-x: auto;
+  .task,
+  .modal-container {
+    background-color: var(--bgCard);
+  }
+
+  .modal {
+    color: var(--fontColor);
+  }
+
+  .btn-float-preferences {
+    background-color: #fff !important;
+    border: solid 1px $gray-color;
+    border-radius: 50%;
+    bottom: 2em;
+    box-shadow: $box-shadow;
+    cursor: pointer;
+    font-size: 30px;
+    padding: 10px;
+    position: fixed;
+    right: 2em;
+    transition: 0.25s ease-in-out transform;
+
+    &:hover {
+      transform: rotate(90deg);
     }
   }
 }

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { AppContext } from "../../context";
+import { AppContext } from "../../context/Task";
 import { Draggable } from "react-beautiful-dnd";
 import { FaRegTrashCan, FaCheck } from "react-icons/fa6";
 import { HiOutlinePencilSquare } from "react-icons/hi2";

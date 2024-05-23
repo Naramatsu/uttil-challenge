@@ -1,79 +1,32 @@
-import React, { useContext } from "react";
-import Column from "./components/Column/index.js";
-import { AppContext } from "./context/index.js";
-import { DragDropContext } from "react-beautiful-dnd";
+import React, { useContext, useState } from "react";
+import Board from "./components/Boad";
+import ModalPreferences from "./components/ModalPreferences";
+import { ThemeContext } from "./context/Theme";
+import { FaGear } from "react-icons/fa6";
 import "./App.scss";
 
 const App = () => {
-  const { columns, updateListTasks } = useContext(AppContext);
-
-  const handlerDragEnd = ({ source, destination }) => {
-    if (!destination) return null;
-    if (
-      source.droppableId === destination.droppableId &&
-      destination.index === source.index
-    )
-      return null;
-
-    const start = columns[source.droppableId];
-    const end = columns[destination.droppableId];
-
-    if (start === end) {
-      const newList = start.list.filter((_, index) => index !== source.index);
-
-      newList.splice(destination.index, 0, start.list[source.index]);
-
-      const newColumn = {
-        id: start.id,
-        list: newList,
-        label: start.label,
-      };
-
-      updateListTasks({
-        ...columns,
-        [newColumn.id]: newColumn,
-      });
-    } else {
-      const newStartList = start.list.filter(
-        (_, index) => index !== source.index
-      );
-
-      const newStartColumn = {
-        id: start.id,
-        list: newStartList,
-        label: start.label,
-      };
-
-      const newEndList = end.list;
-
-      newEndList.splice(destination.index, 0, start.list[source.index]);
-
-      const newEndColumn = {
-        id: end.id,
-        list: newEndList,
-        label: end.label,
-      };
-
-      updateListTasks({
-        ...columns,
-        [newStartColumn.id]: newStartColumn,
-        [newEndColumn.id]: newEndColumn,
-      });
-    }
-  };
+  const [showModalPreferences, setShowModalPreferences] = useState(false);
+  const { theme, cardTheme, fontTheme } = useContext(ThemeContext);
 
   return (
-    <main className="App">
+    <main
+      className="App"
+      style={{
+        "--bg": theme,
+        "--bgCard": cardTheme,
+        "--fontColor": fontTheme,
+      }}
+    >
       <h1>UTTIL Frontend (ReactJs) Challenge por Jonathan Narvaez</h1>
-      <section className="container">
-        <DragDropContext onDragEnd={handlerDragEnd}>
-          <section className="box">
-            {Object.values(columns).map((column) => (
-              <Column column={column} key={column.id} />
-            ))}
-          </section>
-        </DragDropContext>
-      </section>
+      <Board />
+      <FaGear
+        onClick={() => setShowModalPreferences(true)}
+        className="btn-float-preferences"
+      />
+      {showModalPreferences && (
+        <ModalPreferences onClose={() => setShowModalPreferences(false)} />
+      )}
     </main>
   );
 };
