@@ -15,7 +15,13 @@ const Column = ({ column }) => {
       <Droppable droppableId={id}>
         {(provided) => (
           <section className="column-container">
-            <h2>{label}</h2>
+            <h2>
+              {label}
+              <FaPlus
+                className="btn-add"
+                onClick={() => setIsModalVisible(true)}
+              />
+            </h2>
             <section
               className="task-container"
               {...provided.droppableProps}
@@ -35,7 +41,6 @@ const Column = ({ column }) => {
           </section>
         )}
       </Droppable>
-      <FaPlus className="btn-add" onClick={() => setIsModalVisible(true)} />
       {isModalVisible && (
         <ModalCreateTask
           column={id}

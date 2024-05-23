@@ -4,6 +4,7 @@
   position: relative;
 
   h2 {
+    @include flexRow;
     background: #fff;
     position: sticky;
     top: 0px;
@@ -12,13 +13,12 @@
     padding: 1em;
     border-bottom: solid 1px gray;
     margin-bottom: 10px;
+    align-items: stretch;
   }
 
   .btn-add {
     cursor: pointer;
-    font-size: 30px;
-    margin-top: 15px;
-
+    font-size: 15px;
     background-color: $bg-card;
     border-radius: 50%;
     box-shadow: $box-shadow;
