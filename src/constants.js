@@ -18,6 +18,10 @@ export const descriptionLabel = "Descripción";
 export const createLabel = "Crear";
 export const cancelLabel = "Cancelar";
 export const existingTaskMessage = "La tarea ya existe!";
+export const preferencesConfigLabel = "Configuracion de preferencias";
+export const themeLabel = "Tema (background) de la App";
+export const cardThemeLabel = "Tema (background) de las cards";
+export const fontColorLabel = "Color de la fuente";
 
 export const ERROR = "error";
 export const CANCEL = "cancel";
