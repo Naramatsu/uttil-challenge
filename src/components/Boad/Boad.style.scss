@@ -1,5 +1,6 @@
+@import "../../utils.style.scss";
+
 .container {
-  overflow: auto;
   width: 100%;
 
   .board {
@@ -8,6 +9,5 @@
     grid-template-columns: repeat(3, 1fr);
     margin: auto 30px;
     min-width: 1400px;
-    overflow-x: auto;
   }
 }

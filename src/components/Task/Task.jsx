@@ -58,7 +58,7 @@ const Task = ({ text, index, column, taskId }) => {
           ) : (
             <>
               <p>
-                {taskId} - {text}
+                {text}
                 <span className={column}></span>
               </p>
               <section className="btn-group">
