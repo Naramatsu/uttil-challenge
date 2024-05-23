@@ -36,7 +36,7 @@ const AppState = ({ children }) => {
       columns.list.some((taskListed) => taskListed.content === newTask.content)
     );
     if (exists) return true;
-    newTask.id = globalState.lastIndex + 1;
+    newTask.id = String(parseInt(globalState.lastIndex) + 1);
     dispatch({
       type: ADD_TASK,
       payload: {

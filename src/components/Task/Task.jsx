@@ -25,7 +25,7 @@ const Task = ({ text, index, column, taskId }) => {
   };
 
   return (
-    <Draggable draggableId={text} index={index}>
+    <Draggable draggableId={taskId} index={index} key={taskId}>
       {(provided) => (
         <section
           className="task"
@@ -58,7 +58,7 @@ const Task = ({ text, index, column, taskId }) => {
           ) : (
             <>
               <p>
-                {text}
+                {taskId} - {text}
                 <span className={column}></span>
               </p>
               <section className="btn-group">
