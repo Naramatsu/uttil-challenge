@@ -1,0 +1,74 @@
+@import "../../utils.style.scss";
+
+.task {
+  @include columTaskShape;
+  @include flexRow(space-between);
+  background-color: #fff;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: 100%;
+
+  .btn-group {
+    @include flexRow;
+    gap: 15px;
+    margin-right: 1em;
+    transform: translateX(200%);
+    transition: 0.25s ease-in-out transform;
+    z-index: 1;
+
+    .btn-delete-task,
+    .btn-edit-task,
+    .btn-check-task,
+    .btn-close-task {
+      color: $red-color;
+      cursor: pointer;
+    }
+
+    .btn-edit-task {
+      color: #000;
+    }
+
+    .btn-check-task {
+      color: $green-color;
+    }
+  }
+
+  &:hover > .btn-group {
+    transform: translateX(0);
+  }
+
+  p,
+  input {
+    @include flexRow(space-between);
+    align-items: baseline;
+    margin: 0;
+    padding: 1em;
+    position: relative;
+
+    span {
+      background: $gray-color;
+      border-radius: 50%;
+      display: block;
+      height: 10px;
+      position: relative;
+      width: 10px;
+
+      &.en-progreso {
+        background: $blue-color;
+      }
+
+      &.completada {
+        background: $green-color;
+      }
+    }
+  }
+
+  input {
+    border-radius: 2px;
+    margin: 5px 10px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+  }
+}
