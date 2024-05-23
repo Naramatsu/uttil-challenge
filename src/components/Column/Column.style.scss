@@ -3,6 +3,17 @@
 .column {
   position: relative;
 
+  h2 {
+    background: #fff;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+    margin: 0;
+    padding: 1em;
+    border-bottom: solid 1px gray;
+    margin-bottom: 10px;
+  }
+
   .btn-add {
     cursor: pointer;
     font-size: 30px;
@@ -20,6 +31,7 @@
 
     .task-container {
       @include flexColum;
+      min-height: 150px;
     }
   }
 }

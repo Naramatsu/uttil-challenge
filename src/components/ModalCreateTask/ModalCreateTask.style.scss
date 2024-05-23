@@ -39,12 +39,26 @@
         display: block;
         text-align: left;
         width: 100%;
+
+        &.error {
+          color: $red-color;
+          font-size: 12px;
+        }
       }
 
       input,
       button {
         border-radius: $border-radius;
         padding: 1em;
+      }
+
+      input {
+        border: solid 1px $gray-color;
+
+        &.error {
+          border: solid 1px $red-color;
+          color: $red-color;
+        }
       }
 
       button {
