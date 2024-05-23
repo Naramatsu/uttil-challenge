@@ -1,6 +1,6 @@
 import { COMPLETED, IN_PROGRESS, PENDING } from "./constants";
 
-const initialTasks = [
+export const initialTasks = [
   { id: "1", content: "Registrar nuevo cliente", status: PENDING.id },
   { id: "2", content: "Preparar auto para renta", status: IN_PROGRESS.id },
   { id: "3", content: "Inspeccionar auto devuelto", status: COMPLETED.id },

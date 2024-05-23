@@ -1,32 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../context";
 import {
+  CANCEL,
+  ERROR,
   cancelLabel,
   createLabel,
   descriptionLabel,
+  existingTaskMessage,
   taskCreationLabel,
 } from "../../constants";
 
 import "./ModalCreateTask.style.scss";
 
-const ModalCreateTask = ({ column, totalTask, addTask, onClose }) => {
+const ModalCreateTask = ({ column, onClose }) => {
+  const { addTask } = useContext(AppContext);
   const taskFormInitialState = {
     id: null,
     content: "",
     status: column,
   };
   const [taskForm, setTaskForm] = useState(taskFormInitialState);
+  const [taskErrorMessage, setTaskErrorMessage] = useState("");
 
   const handlerSubmit = (event) => {
     event.preventDefault();
-    const newTask = taskForm;
-    newTask.id = totalTask + 1;
-    addTask({
-      task: newTask,
-      column,
-    });
-    setTaskForm(taskFormInitialState);
-    onClose();
+    const exists = addTask(taskForm);
+
+    if (!exists) {
+      setTaskForm(taskFormInitialState);
+      onClose();
+      return false;
+    }
+
+    setTaskErrorMessage(existingTaskMessage);
   };
+
+  const handlerTaskChange = (event) => {
+    setTaskErrorMessage("");
+    setTaskForm({
+      ...taskForm,
+      content: event.target.value,
+    });
+  };
+
+  const isErrrorClassName = taskErrorMessage ? ERROR : "";
 
   return (
     <section className="modal">
@@ -35,19 +52,18 @@ const ModalCreateTask = ({ column, totalTask, addTask, onClose }) => {
         <form onSubmit={handlerSubmit}>
           <label>{descriptionLabel}</label>
           <input
+            className={isErrrorClassName}
             autoFocus
             type="text"
             placeholder={descriptionLabel}
             value={taskForm.content}
-            onChange={(event) =>
-              setTaskForm({
-                ...taskForm,
-                content: event.target.value,
-              })
-            }
+            onChange={handlerTaskChange}
           />
+          {taskErrorMessage && (
+            <label className={isErrrorClassName}>{taskErrorMessage}</label>
+          )}
           <button type="submit">{createLabel}</button>
-          <button type="reset" onClick={onClose} className="cancel">
+          <button type="reset" onClick={onClose} className={CANCEL}>
             {cancelLabel}
           </button>
         </form>

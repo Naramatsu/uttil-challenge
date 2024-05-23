@@ -17,3 +17,7 @@ export const taskCreationLabel = "Creactión de tareas";
 export const descriptionLabel = "Descripción";
 export const createLabel = "Crear";
 export const cancelLabel = "Cancelar";
+export const existingTaskMessage = "La tarea ya existe!";
+
+export const ERROR = "error";
+export const CANCEL = "cancel";

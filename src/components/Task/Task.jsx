@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { AppContext } from "../../context";
 import { Draggable } from "react-beautiful-dnd";
 import { FaRegTrashCan, FaCheck } from "react-icons/fa6";
 import { HiOutlinePencilSquare } from "react-icons/hi2";
@@ -6,15 +7,21 @@ import { IoMdClose } from "react-icons/io";
 
 import "./Task.style.scss";
 
-const Task = ({ text, index, column, deleteTask, taskId }) => {
+const Task = ({ text, index, column, taskId }) => {
+  const { deleteTask, updateTask } = useContext(AppContext);
   const [isEdit, setIsEdit] = useState(false);
   const [taskText, setTasktext] = useState(text);
 
   const handlerUpdateT1ask = (event) => {
-    if (event.key !== "Enter") return;
+    if (event.key === "Enter" || event.type === "click") {
+      updateTask({
+        id: taskId,
+        content: taskText,
+        status: column,
+      });
 
-    setIsEdit(false);
-    console.log("updating");
+      setIsEdit(false);
+    }
   };
 
   return (
@@ -29,6 +36,7 @@ const Task = ({ text, index, column, deleteTask, taskId }) => {
           {isEdit ? (
             <>
               <input
+                autoFocus
                 value={taskText}
                 onKeyDown={handlerUpdateT1ask}
                 onChange={(event) => setTasktext(event.target.value)}
@@ -36,7 +44,7 @@ const Task = ({ text, index, column, deleteTask, taskId }) => {
               <section className="btn-group">
                 <FaCheck
                   className="btn-check-task"
-                  // onClick={() => setIsEdit(true)}
+                  onClick={handlerUpdateT1ask}
                 />
                 <IoMdClose
                   className="btn-close-task"
@@ -49,7 +57,7 @@ const Task = ({ text, index, column, deleteTask, taskId }) => {
             </>
           ) : (
             <>
-              <p onClick={() => console.log("asdasd")}>
+              <p>
                 {text}
                 <span className={column}></span>
               </p>

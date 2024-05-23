@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import Column from "./components/Column/index.js";
+import { AppContext } from "./context/index.js";
 import { DragDropContext } from "react-beautiful-dnd";
-import { initialColumns } from "./App.data.js";
 import "./App.scss";
 
 const App = () => {
-  const [columns, setColumns] = useState(initialColumns);
+  const { columns, updateListTasks } = useContext(AppContext);
 
   const handlerDragEnd = ({ source, destination }) => {
     if (!destination) return null;
@@ -29,7 +29,10 @@ const App = () => {
         label: start.label,
       };
 
-      setColumns((prevState) => ({ ...prevState, [newColumn.id]: newColumn }));
+      updateListTasks({
+        ...columns,
+        [newColumn.id]: newColumn,
+      });
     } else {
       const newStartList = start.list.filter(
         (_, index) => index !== source.index
@@ -51,49 +54,26 @@ const App = () => {
         label: end.label,
       };
 
-      setColumns((prevState) => ({
-        ...prevState,
+      updateListTasks({
+        ...columns,
         [newStartColumn.id]: newStartColumn,
         [newEndColumn.id]: newEndColumn,
-      }));
+      });
     }
-  };
-
-  const handlerAddTask = ({ task, column }) => {
-    setColumns({
-      ...columns,
-      [column]: {
-        ...columns[column],
-        list: [...columns[column].list, task],
-      },
-    });
-  };
-
-  const handlerDeleteTask = ({ taskId, column }) => {
-    setColumns({
-      ...columns,
-      [column]: {
-        ...columns[column],
-        list: columns[column].list.filter((task) => task.id !== taskId),
-      },
-    });
   };
 
   return (
     <main className="App">
       <h1>UTTIL Frontend (ReactJs) Challenge por Jonathan Narvaez</h1>
-      <DragDropContext onDragEnd={handlerDragEnd}>
-        <section className="box">
-          {Object.values(columns).map((column) => (
-            <Column
-              column={column}
-              key={column.id}
-              addTask={handlerAddTask}
-              deleteTask={handlerDeleteTask}
-            />
-          ))}
-        </section>
-      </DragDropContext>
+      <section className="container">
+        <DragDropContext onDragEnd={handlerDragEnd}>
+          <section className="box">
+            {Object.values(columns).map((column) => (
+              <Column column={column} key={column.id} />
+            ))}
+          </section>
+        </DragDropContext>
+      </section>
     </main>
   );
 };
