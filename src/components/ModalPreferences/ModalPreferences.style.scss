@@ -1,0 +1,30 @@
+@import "../../utils.style.scss";
+
+.modal-preferences {
+  .modal-container {
+    @include flexColum;
+    padding: 2em;
+    padding-bottom: 3em;
+    transform: translateY(-50%);
+    width: 350px;
+
+    .btn-close-modal {
+      background-color: #000 !important;
+      border-radius: 50%;
+      color: #fff !important;
+      cursor: pointer;
+      font-size: 24px;
+      position: absolute;
+      right: 1em;
+      top: 1em;
+    }
+
+    .input-group {
+      @include flexRow;
+      align-items: center;
+      border: solid 1px $gray-color;
+      justify-content: space-between;
+      padding: 1em;
+    }
+  }
+}
