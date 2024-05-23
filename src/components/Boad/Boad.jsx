@@ -6,8 +6,8 @@ import "./Boad.style.scss";
 
 const Boad = () => {
   const { columns, updateListTasks } = useContext(AppContext);
+
   const handlerDragEnd = ({ source, destination }) => {
-    if (!destination) return null;
     if (
       source.droppableId === destination.droppableId &&
       destination.index === source.index
