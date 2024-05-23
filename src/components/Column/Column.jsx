@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Task from "../Task";
 import ModalCreateTask from "../ModalCreateTask";
+import Task from "../Task";
 import { Droppable } from "react-beautiful-dnd";
 import { FaPlus } from "react-icons/fa6";
 
 import "./Column.style.scss";
 
-const Column = ({ column, addTask, deleteTask }) => {
+const Column = ({ column }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { list, id, label } = column;
 
@@ -28,7 +28,6 @@ const Column = ({ column, addTask, deleteTask }) => {
                   taskId={task.id}
                   column={id}
                   index={index}
-                  deleteTask={deleteTask}
                 />
               ))}
               {provided.placeholder}
@@ -41,7 +40,6 @@ const Column = ({ column, addTask, deleteTask }) => {
         <ModalCreateTask
           column={id}
           totalTask={list.length}
-          addTask={addTask}
           onClose={() => setIsModalVisible(false)}
         />
       )}
