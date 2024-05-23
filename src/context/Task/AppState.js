@@ -8,7 +8,7 @@ import {
   UPDATE_LIST_TASKS,
   UPDATE_TASK,
 } from "./types";
-import { initialColumns, initialTasks } from "../App.data";
+import { initialColumns, initialTasks } from "../../App.data";
 
 const AppState = ({ children }) => {
   const initialState = {
