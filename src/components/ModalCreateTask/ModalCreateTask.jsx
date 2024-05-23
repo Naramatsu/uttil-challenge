@@ -8,7 +8,7 @@ import {
 
 import "./ModalCreateTask.style.scss";
 
-const ModalCreateTask = ({ column, totalTask, addColumn, onClose }) => {
+const ModalCreateTask = ({ column, totalTask, addTask, onClose }) => {
   const taskFormInitialState = {
     id: null,
     content: "",
@@ -20,7 +20,7 @@ const ModalCreateTask = ({ column, totalTask, addColumn, onClose }) => {
     event.preventDefault();
     const newTask = taskForm;
     newTask.id = totalTask + 1;
-    addColumn({
+    addTask({
       task: newTask,
       column,
     });

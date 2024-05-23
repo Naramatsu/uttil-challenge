@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Column from "./components/Column";
+import Column from "./components/Column/index.js";
 import { DragDropContext } from "react-beautiful-dnd";
 import { initialColumns } from "./App.data.js";
 import "./App.scss";
@@ -88,7 +88,7 @@ const App = () => {
             <Column
               column={column}
               key={column.id}
-              addColumn={handlerAddTask}
+              addTask={handlerAddTask}
               deleteTask={handlerDeleteTask}
             />
           ))}

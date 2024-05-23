@@ -6,7 +6,7 @@ import { FaPlus } from "react-icons/fa6";
 
 import "./Column.style.scss";
 
-const Column = ({ column, addColumn, deleteTask }) => {
+const Column = ({ column, addTask, deleteTask }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
   const { list, id, label } = column;
 
@@ -23,7 +23,7 @@ const Column = ({ column, addColumn, deleteTask }) => {
             >
               {list.map((task, index) => (
                 <Task
-                  key={task.id}
+                  key={index}
                   text={task.content}
                   taskId={task.id}
                   column={id}
@@ -41,7 +41,7 @@ const Column = ({ column, addColumn, deleteTask }) => {
         <ModalCreateTask
           column={id}
           totalTask={list.length}
-          addColumn={addColumn}
+          addTask={addTask}
           onClose={() => setIsModalVisible(false)}
         />
       )}
