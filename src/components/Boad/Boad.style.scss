@@ -1,13 +1,13 @@
 @import "../../utils.style.scss";
 
 .container {
-  width: 100%;
+  margin: auto;
+  width: 1400px;
 
   .board {
     display: grid;
     gap: 30px;
     grid-template-columns: repeat(3, 1fr);
     margin: auto 30px;
-    min-width: 1400px;
   }
 }
