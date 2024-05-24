@@ -45,12 +45,14 @@
     margin: 0;
     padding: 1em;
     position: relative;
+    text-align: left;
 
     span {
       background: $gray-color;
       border-radius: 50%;
       display: block;
       height: 10px;
+      min-width: 10px;
       position: relative;
       width: 10px;
 
@@ -65,10 +67,10 @@
   }
 
   input {
+    border: none;
     border-radius: 2px;
+    box-shadow: none;
     margin: 5px 10px;
     width: 100%;
-    border: none;
-    box-shadow: none;
   }
 }
