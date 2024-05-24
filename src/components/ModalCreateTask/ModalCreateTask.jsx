@@ -6,6 +6,7 @@ import {
   cancelLabel,
   createLabel,
   descriptionLabel,
+  emptyTaskMessage,
   existingTaskMessage,
   taskCreationLabel,
 } from "../../constants";
@@ -24,6 +25,12 @@ const ModalCreateTask = ({ column, onClose }) => {
 
   const handlerSubmit = (event) => {
     event.preventDefault();
+
+    if (!taskForm.content || !taskForm.content.replace(" ", "")) {
+      setTaskErrorMessage(emptyTaskMessage);
+      return false;
+    }
+
     const exists = addTask(taskForm);
 
     if (!exists) {
